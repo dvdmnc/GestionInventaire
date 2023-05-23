@@ -149,12 +149,17 @@ const styles = StyleSheet.create({
   titleCategories: {
     fontSize: 18,
     color: '#45b3e0',
-    padding: 20,
+    paddingLeft: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
     fontWeight: 'bold',
     textDecorationLine: 'underline'
   },
   scrollViewCategories: {
     paddingLeft: 20,
+    borderTopWidth: 3,
+    borderTopColor: '#45b3e0',
+    paddingTop: 5,
   },
   Icons: {
     height: 60,
