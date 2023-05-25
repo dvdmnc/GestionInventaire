@@ -5,7 +5,11 @@ import BoxItemCategories from './BoxItemCategories';
 import {ListProduits, ListMateriel, ListAccessoires, 
     ListNonSterile, ListSterile, ListsousFecale, ListDrainage, 
     ListStomie, ListJusdeFruits, ListEauGelifiee, ListPoudreHyperProtidique,
-ListBoissonLactee, ListCreme, ListConcentreProteine, ListBoissonLacteeSpe} from './Sublists';
+ListBoissonLactee, ListCreme, ListConcentreProteine, ListBoissonLacteeSpe,
+ListRenasys, ListActiv, ListVacUlta, ListVivano, ListKitTpn, ListSnap,
+ListWoundel, ListBandElastique, ListBandContention, ListBandCompression, ListHydrocellulaires,
+ListHydrocolloides, ListInterfaces, ListHydrofibres, ListAlginates, ListActifs,
+ListSuperAbsorbant, ListFixation} from './Sublists';
 
 const ListHygiene = () => {
     return(
@@ -217,7 +221,7 @@ const ListComplements = () => {
     const boissonlacteeclick = () => setList(<ListBoissonLactee/>);
     const cremeclick = () => setList(<ListCreme/>);
     const concentreproteineclick = () => setList(<ListConcentreProteine/>);
-    const boissonlacteespelick = () => setList(<ListBoissonLacteeSpe/>);
+    const boissonlacteespeclick = () => setList(<ListBoissonLacteeSpe/>);
 
     return(
         <View>
@@ -263,7 +267,7 @@ const ListComplements = () => {
                 image= {<Image source={require('./screens/Images/warning.png')} style={styles.Icons}/>}
                 color="rgba(255, 234, 0, 0.5)"
                 text="Boisson Lactée Spécifique"
-                onPress={boissonlacteespelick}
+                onPress={boissonlacteespeclick}
                 />
             </ScrollView>
             {list}
@@ -271,10 +275,156 @@ const ListComplements = () => {
     );};
 
 const ListTpn = () => {
-    return('');};
+    const [list, setList] = useState('');
+
+    const renasysclick = () => setList(<ListRenasys/>);
+    const activclick = () => setList(<ListActiv/>);
+    const vacultaclick = () => setList(<ListVacUlta/>);
+    const vivanoclick = () => setList(<ListVivano/>);
+    const kittpnclick = () => setList(<ListKitTpn/>);
+    const snapclick = () => setList(<ListSnap/>);
+    const woundelclick = () => setList(<ListWoundel/>);
+    const bandelastiqueclick = () => setList(<ListBandElastique/>);
+    const bandcontentionclick = () => setList(<ListBandContention/>);
+    const bandcompressionclick = () => setList(<ListBandCompression/>);
+
+    return(
+    <View>
+        <Text style={styles.titlesubCategories}>Sous-Catégories</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style= {styles.scrollViewCategories}>
+            <BoxItemCategories
+                    image= {<Image source={require('./screens/Images/Renasys.jpg')} style={styles.Icons}/>}
+                    color="rgba(128, 0, 32, 0.5)"
+                    text="Renasys"
+                    onPress= {renasysclick}
+            />
+            <BoxItemCategories
+            image= {<Image source={require('./screens/Images/activaccanister.jpg')} style={styles.Icons}/>}
+            color="rgb(255,255,255)"
+            text="ACTIV A.C KCI"
+            onPress={activclick}
+            />
+            <BoxItemCategories
+            image= {<Image source={require('./screens/Images/vaculta.jpg')} style={styles.Icons}/>}
+            color="rgba(0, 150, 255, 0.5)"
+            text="VAC ULTA KCI"
+            onPress={vacultaclick}
+            />
+            <BoxItemCategories
+                    image= {<Image source={require('./screens/Images/Vivano.jpg')} style={styles.Icons}/>}
+                    color="rgb(128, 0, 0)"
+                    text="VIVANO"
+                    onPress= {vivanoclick}
+            />
+            <BoxItemCategories
+            image= {<Image source={require('./screens/Images/kittpnpico.png')} style={styles.Icons}/>}
+            color="rgb(240,234,214)"
+            text="Kit TPN"
+            onPress={kittpnclick}
+            />
+            <BoxItemCategories
+            image= {<Image source={require('./screens/Images/KitSNAP.png')} style={styles.Icons}/>}
+            color="rgba(255, 255, 255, 0.5)"
+            text="SNAP"
+            onPress={snapclick}
+            />
+            <BoxItemCategories
+            image= {<Image source={require('./screens/Images/woundeltpn.jpg')} style={styles.Icons}/>}
+            color="rgba(255, 234, 0, 0.5)"
+            text="WOUNDEL"
+            onPress={woundelclick}
+            />
+            <BoxItemCategories
+            image= {<Image source={require('./screens/Images/Tubifast.jpg')} style={styles.Icons}/>}
+            color="rgba(255, 234, 0, 0.5)"
+            text="Bandage Elastique"
+            onPress={bandelastiqueclick}
+            />
+            <BoxItemCategories
+            image= {<Image source={require('./screens/Images/biflex.png')} style={styles.Icons}/>}
+            color="rgba(255, 234, 0, 0.5)"
+            text="Bandage de contention"
+            onPress={bandcontentionclick}
+            />
+            <BoxItemCategories
+            image= {<Image source={require('./screens/Images/urgo.jpg')} style={styles.Icons}/>}
+            color="rgba(255, 234, 0, 0.5)"
+            text="Bandage de compression"
+            onPress={bandcompressionclick}
+            />
+        </ScrollView>
+        {list}
+    </View>
+    );};
 
 const ListPansements = () => {
-    return('');};
+    const [list, setList] = useState('');
+
+    const hydrocellulairesclick = () => setList(<ListHydrocellulaires/>);
+    const hydrocolloidesclick = () => setList(<ListHydrocolloides/>);
+    const interfacesclick = () => setList(<ListInterfaces/>);
+    const hydrofibresclick = () => setList(<ListHydrofibres/>);
+    const alginatesclick = () => setList(<ListAlginates/>);
+    const actifsclick = () => setList(<ListActifs/>);
+    const superabsorbantclick = () => setList(<ListSuperAbsorbant/>);
+    const fixationclick = () => setList(<ListFixation/>);
+
+    return(
+        <View>
+        <Text style={styles.titlesubCategories}>Sous-Catégories</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style= {styles.scrollViewCategories}>
+            <BoxItemCategories
+                    image= {<Image source={require('./screens/Images/hydrocellulaires.png')} style={styles.Icons}/>}
+                    color="rgba(128, 0, 32, 0.5)"
+                    text="Hydrocellulaires"
+                    onPress= {hydrocellulairesclick}
+            />
+            <BoxItemCategories
+            image= {<Image source={require('./screens/Images/hydrocolloides.jpg')} style={styles.Icons}/>}
+            color="rgb(255,255,255)"
+            text="Hydrocolloides"
+            onPress={hydrocolloidesclick}
+            />
+            <BoxItemCategories
+            image= {<Image source={require('./screens/Images/interfaces.png')} style={styles.Icons}/>}
+            color="rgba(0, 150, 255, 0.5)"
+            text="Interfaces"
+            onPress={interfacesclick}
+            />
+            <BoxItemCategories
+                    image= {<Image source={require('./screens/Images/hydrofibres.jpg')} style={styles.Icons}/>}
+                    color="rgb(128, 0, 0)"
+                    text="Hydrofibres"
+                    onPress= {hydrofibresclick}
+            />
+            <BoxItemCategories
+            image= {<Image source={require('./screens/Images/alginates.jpg')} style={styles.Icons}/>}
+            color="rgb(240,234,214)"
+            text="Alginates"
+            onPress={alginatesclick}
+            />
+            <BoxItemCategories
+            image= {<Image source={require('./screens/Images/actifs.jpg')} style={styles.Icons}/>}
+            color="rgba(255, 255, 255, 0.5)"
+            text="Actifs"
+            onPress={actifsclick}
+            />
+            <BoxItemCategories
+            image= {<Image source={require('./screens/Images/superabsorbant.jpg')} style={styles.Icons}/>}
+            color="rgba(255, 234, 0, 0.5)"
+            text="Super Absorbant"
+            onPress={superabsorbantclick}
+            />
+            <BoxItemCategories
+            image= {<Image source={require('./screens/Images/fixation.png')} style={styles.Icons}/>}
+            color="rgba(255, 234, 0, 0.5)"
+            text="Fixation"
+            onPress={fixationclick}
+            />
+        </ScrollView>
+        {list}
+    </View>
+    );};
 
 export {ListHygiene, ListSoins, ListPerfusions, ListUrinaires, 
     ListFecales, ListRespiratoire, ListGlycemie, ListNutrition, ListAspiration, 
