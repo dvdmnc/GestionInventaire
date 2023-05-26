@@ -1,11 +1,14 @@
 import * as React from 'react';
-import { useState } from 'react';
-import {View, Text, SafeAreaView, ScrollView, StatusBar, StyleSheet, TextInput, Image} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useState, useEffect } from 'react';
+import {View, Text, SafeAreaView, ScrollView, StatusBar, StyleSheet, TextInput, ActivityIndicator, Image} from 'react-native';
 import BoxItemCategories from '../BoxItemCategories';
 import {ListHygiene, ListSoins, ListPerfusions, ListUrinaires, 
   ListFecales, ListRespiratoire, ListGlycemie, ListNutrition, ListAspiration, 
   ListComplements, ListTpn, ListPansements } from '../Lists';
+import SearchBar from '../SearchBar';
+import SearchBarList from '../SearchBarList';
+import { elements } from '../Elements';
+
 
 export default function InventoryScreen({navigation}){
     const [list, setList] = useState('');
@@ -23,18 +26,30 @@ export default function InventoryScreen({navigation}){
     const tpnclick = () => setList(<ListTpn/>);
     const pansementsclick = () => setList(<ListPansements/>);
 
+    const [searchPhrase, setSearchPhrase] = useState("");
+    const [clicked, setClicked] = useState(false);
+    const data = elements
+
     return(
       <SafeAreaView style={styles.container}>
-        <ScrollView style={styles.scrollView}>
           <Text style={styles.text}>INVENTAIRE</Text>
-          {/* search */}
-          <View style={styles.searchBar}>
-            <View style={styles.wrapperSearch}>
-              <TextInput placeholder="Que cherchez-vous ?" style={styles.textInputSearch}/>
-              <Ionicons name="search" size={30} color="#787878" />
-            </View>
-          </View>
+          <SearchBar
+            searchPhrase={searchPhrase}
+            setSearchPhrase={setSearchPhrase}
+            clicked={clicked}
+            setClicked={setClicked}
+          />
+          {clicked &&
+
+          <SearchBarList
+            searchPhrase={searchPhrase}
+            data={data}
+            setClicked={setClicked}
+          />
+
+          }
           {/* categories */}
+          <ScrollView style={styles.scrollView}>
           <View>
             <Text style={styles.titleCategories}>Catégories</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scrollViewCategories}>
@@ -122,6 +137,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: StatusBar.currentHeight,
+    backgroundColor: 'white'
   },
   scrollView: {
     backgroundColor: 'white',
@@ -132,19 +148,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#45b3e0',
     textDecorationLine: 'underline'
-  },
-  searchBar: {
-    paddingHorizontal: 20,
-    paddingTop: 20
-  },
-  wrapperSearch: {
-    height: 40,
-    backgroundColor: '#ededed',
-    borderRadius: 12,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 25,
   },
   titleCategories: {
     fontSize: 18,
