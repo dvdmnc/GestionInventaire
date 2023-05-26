@@ -43,7 +43,6 @@ const ListMateriel = () => {
                     <Text style= {styles.text}>Seringue 20ml luer lock</Text>
                     <Text style= {styles.text}>Seringue 50ml luer lock</Text>
                     <Text style= {styles.text}>Set de transfert</Text>
-                    <Text style= {styles.text}>Seringue à Insuline 1ml</Text>
                     <Text style= {styles.text}>Pst adhésif Tegaderm I.V. 7x8.5cm</Text>
         </View>
     );
