@@ -280,7 +280,6 @@ const ListKitTpn = () => {
                 <Text style= {styles.text}>AVELL 21x26</Text>
                 <Text style= {styles.text}>AVELL 26x26</Text>
                 <Text style= {styles.text}>PICO 10x20</Text>
-                <Text style= {styles.text}>PICO 10x20</Text>
                 <Text style= {styles.text}>PICO 10x30</Text>
                 <Text style= {styles.text}>PICO 15x15</Text>
                 <Text style= {styles.text}>PICO 15x20</Text>
