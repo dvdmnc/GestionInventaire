@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import {View, Text, SafeAreaView, ScrollView, StyleSheet, Image} from 'react-native';
+import {View, Text, ScrollView, StyleSheet, Image} from 'react-native';
 import BoxItemCategories from './BoxItemCategories';
 import {ListProduits, ListMateriel, ListAccessoires, 
     ListNonSterile, ListSterile, ListsousFecale, ListDrainage, 
@@ -12,28 +12,29 @@ ListHydrocolloides, ListInterfaces, ListHydrofibres, ListAlginates, ListActifs,
 ListSuperAbsorbant, ListFixation} from './Sublists';
 import Counter from '../Counter';
 
+
 const ListHygiene = () => {
     return(
         <View style= {styles.container}>
-                <Text style= {styles.text}>Blouse                    <Counter/></Text>
-                <Text style= {styles.text}>Tablier Plastique                    <Counter/></Text>
-                <Text style= {styles.text}>Gants non stérile                    <Counter/></Text>
-                <Text style= {styles.text}>Masque                    <Counter/></Text>
-                <Text style= {styles.text} >Charlotte                    <Counter/></Text>
-                <Text style= {styles.text}>Gants Stériles                    <Counter/></Text>
-                <Text style= {styles.text}>Savon                    <Counter/></Text>
-                <Text style= {styles.text}>Aniosgel Pompe                    <Counter/></Text>
-                <Text style= {styles.text} >Anios Surfa'safe                    <Counter/></Text>
-                <Text style= {styles.text}>Salvanios                    <Counter/></Text>
-                <Text style= {styles.text}>Gants de Toilette                    <Counter/></Text>
-                <Text style= {styles.text}>Batonnets soins de bouche                    <Counter/></Text>
-                <Text style= {styles.text}>Comprimés soins de bouche                    <Counter/></Text>
-                <Text style= {styles.text}>Abaisse langue                    <Counter/></Text>
-                <Text style= {styles.text}>Crachoir                    <Counter/></Text>
-                <Text style= {styles.text}>Haricot                    <Counter/></Text>
-                <Text style= {styles.text} >Collecteur objets piquants</Text>
-                <Text style= {styles.text}>Sac DASRI                    <Counter/></Text>
-                <Text style= {styles.text} >Sac Poubelle                    <Counter/></Text>
+                <Text style= {styles.text} >Blouse <Counter element={"Blouse"}/></Text>
+                <Text style= {styles.text}>Tablier Plastique                    <Counter element={"Tablier Plastique"}/></Text>
+                <Text style= {styles.text}>Gants non stérile                    <Counter element={"Gants non stérile"}/></Text>
+                <Text style= {styles.text}>Masque                    <Counter element={"Masque"}/></Text>
+                <Text style= {styles.text} >Charlotte                    <Counter element={"Charlotte"}/></Text>
+                <Text style= {styles.text}>Gants Stériles                    <Counter element={"Gants Stériles"}/></Text>
+                <Text style= {styles.text}>Savon                    <Counter element={"Savon"}/></Text>
+                <Text style= {styles.text}>Aniosgel Pompe                    <Counter element={"Aniosgel Pompe"}/></Text>
+                <Text style= {styles.text} >Anios Surfa'safe                    <Counter element={"Anios Surfa'Safe"}/></Text>
+                <Text style= {styles.text}>Salvanios                    <Counter element={"Salvanios"}/></Text>
+                <Text style= {styles.text}>Gants de Toilette                    <Counter element={"Gants de Toilette"}/></Text>
+                <Text style= {styles.text}>Batonnets soins de bouche                    <Counter element={"Batonnets soins de bouche"}/></Text>
+                <Text style= {styles.text}>Comprimés soins de bouche                    <Counter element={"Comprimés soins de bouche"}/></Text>
+                <Text style= {styles.text}>Abaisse langue                    <Counter element={"Abaisse langue"}/></Text>
+                <Text style= {styles.text}>Crachoir                    <Counter element={"Crachoir"}/></Text>
+                <Text style= {styles.text}>Haricot                    <Counter element={"Haricot"}/></Text>
+                <Text style= {styles.text} >Collecteur objets piquants <Counter element={"Collecteur objets piquants"}/></Text>
+                <Text style= {styles.text}>Sac DASRI                    <Counter element={"Sac DASRI"}/></Text>
+                <Text style= {styles.text} >Sac Poubelle                    <Counter element={"Sac Poubelle"}/></Text>
         </View>
     );
 };
@@ -41,27 +42,27 @@ const ListHygiene = () => {
 const ListSoins = () => {
     return(
         <View style= {styles.container}>
-                <Text style= {styles.text}>Alese                    <Counter/></Text>
-                <Text style= {styles.text}>Set à Pansements                    <Counter/></Text>
-                <Text style= {styles.text}>Compresse 7.5 * 7.5 B50                    <Counter/></Text>
-                <Text style= {styles.text}>Compresse 10 * 10 B50                    <Counter/></Text>
-                <Text style= {styles.text}>Ciseaux                    <Counter/></Text>
-                <Text style= {styles.text}>Coupe Fils                    <Counter/></Text>
-                <Text style= {styles.text}>Curette                    <Counter/></Text>
-                <Text style= {styles.text}>Stylet                    <Counter/></Text>
-                <Text style= {styles.text}>Bande Nylex                    <Counter/></Text>
-                <Text style= {styles.text}>Bande Crêpe (Velpeau)                    <Counter/></Text>
-                <Text style= {styles.text}>Sparadrap Microporeux                    <Counter/></Text>
-                <Text style= {styles.text}>Champ Stérile                    <Counter/></Text>
-                <Text style= {styles.text}>Ôte Agrafes                    <Counter/></Text>
-                <Text style= {styles.text}>Protecteur Cutané Brava Max                    <Counter/></Text>
-                <Text style= {styles.text}>Spray Brava                    <Counter/></Text>
-                <Text style= {styles.text}>Spray Adapt                    <Counter/></Text>
-                <Text style= {styles.text}>Sanyrene Pomp                    <Counter/></Text>
-                <Text style= {styles.text}>Conveen Portact cr                    <Counter/></Text>
-                <Text style= {styles.text}>Verre Canard                    <Counter/></Text>
-                <Text style= {styles.text}>Pilulier                    <Counter/></Text>
-                <Text style= {styles.text}>Ecrase comprimés                    <Counter/></Text>
+                <Text style= {styles.text}>Alese                    <Counter element ={"Alese"}/></Text>
+                <Text style= {styles.text}>Set à Pansements                    <Counter element={"Set à Pansements"}/></Text>
+                <Text style= {styles.text}>Compresse 7.5 * 7.5 B50                    <Counter element={"Compresse 7.5*7.5 B50"}/></Text>
+                <Text style= {styles.text}>Compresse 10 * 10 B50                    <Counter element={"Compresse 10*10 B50"}/></Text>
+                <Text style= {styles.text}>Ciseaux                    <Counter element={"Ciseaux"}/></Text>
+                <Text style= {styles.text}>Coupe Fils                    <Counter element={"Coupe fils"}/></Text>
+                <Text style= {styles.text}>Curette                    <Counter element={"Curette"}/></Text>
+                <Text style= {styles.text}>Stylet                    <Counter element={"Stylet"}/></Text>
+                <Text style= {styles.text}>Bande Nylex                    <Counter element={"Bande Nylex"}/></Text>
+                <Text style= {styles.text}>Bande Crêpe (Velpeau)                    <Counter element={"Bande Crêpe (Velpeau)"}/></Text>
+                <Text style= {styles.text}>Sparadrap Microporeux                    <Counter element={"Sparadrap Microporeux"}/></Text>
+                <Text style= {styles.text}>Champ Stérile                    <Counter element={"Champ Stérile"}/></Text>
+                <Text style= {styles.text}>Ôte Agrafes                    <Counter element={"Ôte Agrafes"}/></Text>
+                <Text style= {styles.text}>Protecteur Cutané Brava Max                    <Counter element={"Protecteur Cutané Brava Max"}/></Text>
+                <Text style= {styles.text}>Spray Brava                    <Counter element={"Spray Brava"}/></Text>
+                <Text style= {styles.text}>Spray Adapt                    <Counter element={"Spray Adapt"}/></Text>
+                <Text style= {styles.text}>Sanyrene Pomp                    <Counter element={"Sanyrene Pomp"}/></Text>
+                <Text style= {styles.text}>Conveen Portact cr                    <Counter element={"Conveen Portact cr"}/></Text>
+                <Text style= {styles.text}>Verre Canard                    <Counter element={"Verre Canard"}/></Text>
+                <Text style= {styles.text}>Pilulier                    <Counter element={"Pilulier"}/></Text>
+                <Text style= {styles.text}>Ecrase comprimés                    <Counter element={"Ecrase comprimés"}/></Text>
         </View>
     );
 };
@@ -164,52 +165,52 @@ const ListFecales = () => {
 const ListRespiratoire = () => {
     return(
         <View>
-            <Text style= {styles.text}>Lunette O²                    <Counter/></Text>
-            <Text style= {styles.text}>Masque aérosol                    <Counter/></Text>
-            <Text style= {styles.text}>Gel Lubrifiant K.Y                    <Counter/></Text>
+            <Text style= {styles.text}>Lunette O²                    <Counter element={"Lunette O²"}/></Text>
+            <Text style= {styles.text}>Masque aérosol                    <Counter element={"Masque aérosol"}/></Text>
+            <Text style= {styles.text}>Gel Lubrifiant K.Y                    <Counter element={"Gel Lubrifiant K.Y"}/></Text>
         </View>
     );};
 
 const ListGlycemie = () => {
     return(
     <View>
-        <Text style= {styles.text}>Lecteur de Glycémie                    <Counter/></Text>
-        <Text style= {styles.text}>Bandelette Accu-Check guide B50                    <Counter/></Text>
-        <Text style= {styles.text}>Autopiqueur Unistik S30                    <Counter/></Text>
-        <Text style= {styles.text}>Aiguille de sécurité 4 mm S30                    <Counter/></Text>
-        <Text style= {styles.text}>Aiguille de sécurité 8 mm S30                    <Counter/></Text>
+        <Text style= {styles.text}>Lecteur de Glycémie                    <Counter element={"Lecteur de Glycémie"}/></Text>
+        <Text style= {styles.text}>Bandelette Accu-Check guide B50                    <Counter element={"Bandelette Accu-Check guide B50"}/></Text>
+        <Text style= {styles.text}>Autopiqueur Unistik S30                    <Counter element={"Autopiqueur Unistik S30"}/></Text>
+        <Text style= {styles.text}>Aiguille de sécurité 4 mm S30                    <Counter element={"Aiguille de sécurité 4mm S30"}/></Text>
+        <Text style= {styles.text}>Aiguille de sécurité 8 mm S30                    <Counter element={"Aiguille de sécurité 8mm S30"}/></Text>
     </View>
     );};
 
 const ListNutrition = () => {
     return(
     <View>
-            <Text style= {styles.text}>POCHES D'ALIMENTATION ENTERALES Fresub                    <Counter/></Text>
-            <Text style= {styles.text}>POCHES D'ALIMENTATION ENTERALES Fresubin 2 Kcal HP Fibre 500ml                    <Counter/></Text>
-            <Text style= {styles.text}>Seringue ENFit 50ml                    <Counter/></Text>
-            <Text style= {styles.text}>Adaptateur Godet ENFit NCE100A                    <Counter/></Text>
-            <Text style= {styles.text}>Adaptateur Fosset ENFit NCE1058A                    <Counter/></Text>
-            <Text style= {styles.text}>Seringue de gavage 50ml                    <Counter/></Text>
-            <Text style= {styles.text}>Fosset 478.00                    <Counter/></Text>
-            <Text style= {styles.text}>SNG SDFT08                    <Counter/></Text>
-            <Text style= {styles.text}>SNG SDFT1                    <Counter/>0</Text>
-            <Text style= {styles.text}>SNG SDFT12                    <Counter/></Text>
-            <Text style= {styles.text}>SNG SDFT14                    <Counter/></Text>
+            <Text style= {styles.text}>POCHES D'ALIMENTATION ENTERALES Fresub                    <Counter element={"POCHE D'ALIMENTATION ENTERALES Fresub"}/></Text>
+            <Text style= {styles.text}>POCHES D'ALIMENTATION ENTERALES Fresubin 2 Kcal HP Fibre 500ml                    <Counter element={"POCHES D'ALIMENTATION ENTERALES Fresubin 2Kcal HP Fibre 500ml"}/></Text>
+            <Text style= {styles.text}>Seringue ENFit 50ml                    <Counter element={"Seringue ENFit 50ml"}/></Text>
+            <Text style= {styles.text}>Adaptateur Godet ENFit NCE100A                    <Counter element={"Adaptateur Godet ENFit NCE100A"}/></Text>
+            <Text style= {styles.text}>Adaptateur Fosset ENFit NCE1058A                    <Counter element={"Adaptateur Fosset ENFit NCE1058A"}/></Text>
+            <Text style= {styles.text}>Seringue de gavage 50ml                    <Counter element={"Seringue de gavage 50ml"}/></Text>
+            <Text style= {styles.text}>Fosset 478.00                    <Counter element={"Fosset 478.00"}/></Text>
+            <Text style= {styles.text}>SNG SDFT08                    <Counter element={"SNG SDFT08"}/></Text>
+            <Text style= {styles.text}>SNG SDFT1                    <Counter element={"SNG SDFT1"}/></Text>
+            <Text style= {styles.text}>SNG SDFT12                    <Counter element={"SNG SDFT12"}/></Text>
+            <Text style= {styles.text}>SNG SDFT14                    <Counter element={"SNG SDFT14"}/></Text>
     </View>
     );};
 
 const ListAspiration = () => {
     return(  
     <View>
-        <Text style= {styles.text}>Sonde d'aspiration boite de 50 Noire CH10                    <Counter/></Text>
-        <Text style= {styles.text}>Sonde d'aspiration boite de 50 Blanche CH12                    <Counter/></Text>
-        <Text style= {styles.text}>Sonde d'aspiration boite de 50 Verte CH14                    <Counter/></Text>
-        <Text style= {styles.text}>Sonde d'aspiration boite de 50 Orange CH16                    <Counter/></Text>
-        <Text style= {styles.text}>Sonde d'aspiration boite de 50 Rouge CH18                    <Counter/></Text>
-        <Text style= {styles.text}>Stop vide Uni'valve                    <Counter/></Text>
-        <Text style= {styles.text}>Poly'vac (Bouchon)                    <Counter/></Text>
-        <Text style= {styles.text}>Eau stérile versable 1000ml                    <Counter/></Text>
-        <Text style= {styles.text}>Eau PPI 20ml                    <Counter/></Text>
+        <Text style= {styles.text}>Sonde d'aspiration boite de 50 Noire CH10                    <Counter element={"Sonde d'aspiration boite de 50 Noire CH10"}/></Text>
+        <Text style= {styles.text}>Sonde d'aspiration boite de 50 Blanche CH12                    <Counter element={"Sonde d'aspiration boite de 50 blanche CH12"}/></Text>
+        <Text style= {styles.text}>Sonde d'aspiration boite de 50 Verte CH14                    <Counter element={"Sonde d'aspiration boite de 50 Verte CH14"}/></Text>
+        <Text style= {styles.text}>Sonde d'aspiration boite de 50 Orange CH16                    <Counter element={"Sonde d'aspiration boite de 50 Orange CH16"}/></Text>
+        <Text style= {styles.text}>Sonde d'aspiration boite de 50 Rouge CH18                    <Counter element={"Sonde d'aspiration boite de 50 Rouge CH18"}/></Text>
+        <Text style= {styles.text}>Stop vide Uni'valve                    <Counter element={"Stop vide Uni'valve"}/></Text>
+        <Text style= {styles.text}>Poly'vac (Bouchon)                    <Counter element={"Poly'vac (Bouchon)"}/></Text>
+        <Text style= {styles.text}>Eau stérile versable 1000ml                    <Counter element={"Eau stérile versable"}/></Text>
+        <Text style= {styles.text}>Eau PPI 20ml                    <Counter element={"Eau PPI 20ml"}/></Text>
     </View>
     );};
 
