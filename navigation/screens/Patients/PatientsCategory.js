@@ -108,37 +108,59 @@ const PatientCategory = () => {
     );
   };
 
+  const handleDeleteToOrderItem = (patientId, itemName) => {
+    setPatients((prevPatients) =>
+      prevPatients.map((patient) => {
+        if (patient.id === patientId) {
+          const updatedToOrderItems = patient.toOrderItems.filter(
+            (item) => item.name !== itemName
+          );
+
+          return { ...patient, toOrderItems: updatedToOrderItems };
+        }
+        return patient;
+      })
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.patientsContainer}>
           {patients.map((patient) => (
-            <View key={patient.id} style={styles.patient}>
-              <TouchableOpacity
-                onPress={() => handleToggleAccordion(patient.id)}
-              >
-                <Text style={styles.patientName}>{patient.name}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => handleDeletePatient(patient.id)}
-                style={styles.deleteButton}
-              >
-                <Text style={styles.deleteButtonText}>Supprimer</Text>
-              </TouchableOpacity>
+            <View key={patient.id} style={styles.patientContainer}>
+              <View style={styles.patientHeader}>
+                <TouchableOpacity
+                  onPress={() => handleToggleAccordion(patient.id)}
+                  style={styles.patientNameButton}
+                >
+                  <Text style={styles.patientName}>{patient.name}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => handleDeletePatient(patient.id)}
+                  style={styles.deleteButton}
+                >
+                  <Text style={styles.deleteButtonText}>Supprimer</Text>
+                </TouchableOpacity>
+              </View>
 
               {expandedPatientId === patient.id && (
                 <View>
                   <Text style={styles.categoryTitle}>En Stock:</Text>
                   {patient.inStockItems.map((item, index) => (
                     <View key={index} style={styles.item}>
-                      <Text style={styles.itemName}>{item.name}</Text>
+                      <Text style={styles.itemName}>
+                        {item.name} ({item.quantity})
+                      </Text>
                       <View style={styles.quantityContainer}>
                         <TouchableOpacity
-                          onPress={() => handleReduceQuantity(patient.id, item.name)}
+                          onPress={() =>
+                            handleReduceQuantity(patient.id, item.name)
+                          }
+                          style={styles.reduceQuantityButton}
                         >
-                          <Text style={styles.quantityButtonText}>-</Text>
+                          <Text style={styles.reduceQuantityButtonText}>-</Text>
                         </TouchableOpacity>
-                        <Text style={styles.itemQuantity}>{item.quantity}</Text>
                       </View>
                     </View>
                   ))}
@@ -167,7 +189,14 @@ const PatientCategory = () => {
                   {patient.toOrderItems.map((item, index) => (
                     <View key={index} style={styles.item}>
                       <Text style={styles.itemName}>{item.name}</Text>
-                      <Text style={styles.itemQuantity}>{item.quantity}</Text>
+                      <TouchableOpacity
+                        onPress={() =>
+                          handleDeleteToOrderItem(patient.id, item.name)
+                        }
+                        style={styles.deleteToOrderButton}
+                      >
+                        <Text style={styles.deleteButtonText}>Supprimer</Text>
+                      </TouchableOpacity>
                     </View>
                   ))}
                 </View>
@@ -204,13 +233,25 @@ const styles = StyleSheet.create({
   patientsContainer: {
     marginBottom: 10,
   },
-  patient: {
+  patientContainer: {
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: 'lightgray',
+    borderRadius: 5,
+    padding: 10,
+  },
+  patientHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginBottom: 10,
   },
+  patientNameButton: {
+    flex: 1,
+  },
   patientName: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
-    marginRight: 'auto',
   },
   deleteButton: {
     backgroundColor: 'red',
@@ -220,11 +261,12 @@ const styles = StyleSheet.create({
   },
   deleteButtonText: {
     color: 'white',
+    fontWeight: 'bold',
   },
   categoryTitle: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
-    marginTop: 10,
+    marginBottom: 5,
   },
   item: {
     flexDirection: 'row',
@@ -232,20 +274,20 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   itemName: {
-    marginRight: 10,
+    flex: 1,
   },
   quantityContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  quantityButtonText: {
-    paddingHorizontal: 5,
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'red',
+  reduceQuantityButton: {
+    backgroundColor: 'lightgray',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 5,
   },
-  itemQuantity: {
-    marginRight: 10,
+  reduceQuantityButtonText: {
+    fontWeight: 'bold',
   },
   addItemContainer: {
     flexDirection: 'row',
@@ -254,16 +296,18 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
     marginRight: 10,
-    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'lightgray',
+    borderRadius: 5,
+    padding: 5,
   },
-  addPatientContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 10,
+  deleteToOrderButton: {
+    backgroundColor: 'red',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 5,
+    marginLeft: 10,
   },
 });
 
