@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, Text, SafeAreaView, ScrollView, StatusBar, StyleSheet, Image} from 'react-native';
 
-export default function WelcomeScreen({navigation}){
+export default function WelcomeScreen(){
     return(
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
