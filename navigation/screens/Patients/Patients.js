@@ -17,11 +17,10 @@ export default function PatientsScreen(){
       <SafeAreaView style={styles.container}>
           <Text
             style={styles.text}>PATIENTS</Text>
-        <NavigationContainer independent={true}>
           <Tab.Navigator
             initialRouteName={patientscategoryName}
-            tabBarPosition='top' // Position your tab bar to the bottom
-            swipeEnabled={true} // Enable swipe functionality
+            tabBarPosition='top' 
+            swipeEnabled={true} 
             screenOptions={({ route }) => ({
               tabBarIcon: ({ focused, color, size }) => {
                 let iconName;
@@ -50,7 +49,6 @@ export default function PatientsScreen(){
             <Tab.Screen name={ordercategoryName} component={OrderCategoryScreen} />
 
           </Tab.Navigator>
-        </NavigationContainer>
       </SafeAreaView>
     );
 }
