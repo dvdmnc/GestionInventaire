@@ -27,7 +27,7 @@ const PatientCategory = () => {
 
   const handleAddPatient = (name) => {
     if (name.trim() === '') {
-      return; // Don't add empty patient names
+      return; 
     }
 
     const newPatient = {
@@ -38,7 +38,7 @@ const PatientCategory = () => {
     };
 
     setPatients((prevPatients) => [...prevPatients, newPatient]);
-    setNewPatientName(''); // Clear the input field
+    setNewPatientName(''); 
   };
 
   const handleDeletePatient = (patientId) => {
@@ -49,7 +49,7 @@ const PatientCategory = () => {
 
   const handleAddToStock = (patientId) => {
     if (newItemName.trim() === '' || newItemQuantity.trim() === '') {
-      return; // Don't add empty item name or quantity
+      return; 
     }
 
     setPatients((prevPatients) =>
