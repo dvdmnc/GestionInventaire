@@ -16,7 +16,6 @@ export default function WelcomeScreen(){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
   },
   scrollView: {
     backgroundColor: 'white',
