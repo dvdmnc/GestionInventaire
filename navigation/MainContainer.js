@@ -6,8 +6,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 //Screens
 import WelcomeScreen from './screens/Welcome'
-import InventoryScreen from './screens/Inventory'
-import PatientsScreen from './screens/Patients'
+import InventoryScreen from './screens/Inventory/Inventory';
+import PatientsScreen from './screens/Patients/Patients'
 
 // Screen names
 const welcomeName = 'Bienvenue'
