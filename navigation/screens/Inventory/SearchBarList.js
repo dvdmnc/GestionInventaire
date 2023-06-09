@@ -1,72 +1,70 @@
-import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  SafeAreaView,
-} from "react-native";
+import React, { useMemo, useCallback } from "react";
+import { View, Text, FlatList, StyleSheet } from "react-native";
 import Counter from "../Counter";
 
-// definition of the Item, which will be rendered in the FlatList
-const Item = ({ name, category }) => (
-  <View style={{flex : 0.5, flexDirection: 'row', justifyContent:'flex-start'}}>
-    <View style={styles.item}>
-      <Text style={styles.title}>{name}</Text>
-      <Text style={styles.category}>{category}</Text>
-    </View>
-    <View style={{height: 50, alignSelf: 'center'}}>
-    <Counter/>
-    </View>
-  </View>
-);
+export default function SearchBarList({ searchPhrase, data }) {
+  const filteredData = useMemo(() => {
+    return data.filter(
+      (item) =>
+        item.name &&
+        item.category &&
+        (item.name.toLowerCase().includes(searchPhrase.toLowerCase()) ||
+          item.category.toLowerCase().includes(searchPhrase.toLowerCase()))
+    );
+  }, [data, searchPhrase]);
 
-// the filter
-const SearchBarList = ({ searchPhrase, data }) => {
-  const renderItem = ({ item }) => {
-    // when no input, show all
-    if (searchPhrase === "") {
-      return <Item name={item.name} category={item.category}/>;
-    }
-    // filter of the name
-    if (item.name.toUpperCase().includes(searchPhrase.toUpperCase())) {
-      console.log(item.name);
-      return <Item name={item.name} category={item.category}/>;
-    }
-    if (item.category.toUpperCase().includes(searchPhrase.toUpperCase())) {
-        console.log(item.category);
-        return <Item name={item.name} category={item.category} />;
-    }
-  };
+  const renderItem = useCallback(({ item }) => {
+    return (
+      <View style={styles.itemContainer}>
+        <View style={styles.itemInfo}>
+          <Text style={styles.itemName}>{item.name}</Text>
+          <Text style={styles.itemCategory}>{item.category}</Text>
+        </View>
+        <View style={styles.itemCounter}>
+          <Counter element={item.name} />
+        </View>
+      </View>
+    );
+  }, []);
+
+  const keyExtractor = useCallback((item) => item.id.toString(), []);
 
   return (
-    <SafeAreaView style={styles.list__container}>
-        <FlatList
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
-    </SafeAreaView>
+    <View>
+      <FlatList
+        data={filteredData}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        windowSize={10}
+        virtualized
+      />
+    </View>
   );
-};
-
-export default SearchBarList;
+}
 
 const styles = StyleSheet.create({
-  list__container: {
-    margin: 10,
-    height: "85%",
-    width: "100%",
+  itemContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: "#EAEAEA",
   },
-  item: {
-    margin: 30,
-    borderBottomWidth: 2,
-    borderBottomColor: "lightgrey"
+  itemInfo: {
+    flex: 1,
   },
-  title: {
-    fontSize: 20,
+  itemName: {
     fontWeight: "bold",
-    marginBottom: 5,
-    fontStyle: "italic",
+    fontSize: 16,
+  },
+  itemCategory: {
+    fontSize: 14,
+    color: "#888888",
+  },
+  itemCounter: {
+    marginLeft: 10,
   },
 });
