@@ -21,8 +21,8 @@ export default function MainContainer(){
       <NavigationContainer>
         <Tab.Navigator 
         initialRouteName={welcomeName}
-        tabBarPosition='bottom' // Position your tab bar to the bottom
-        swipeEnabled={true} // Enable swipe functionality
+        tabBarPosition='bottom' 
+        swipeEnabled={true} 
         screenOptions={({route}) => ({
             tabBarIcon: ({focused, color, size}) => {
                 let iconName;
@@ -44,7 +44,7 @@ export default function MainContainer(){
             inactiveTintColor: '#45b3e0',
             labelStyle: { paddingBottom : 10, fontSize : 10},
             style: {height: 70},
-            showIcon: true, // Show icons
+            showIcon: true, 
         }}
         
         >
