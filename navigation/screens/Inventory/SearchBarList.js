@@ -3,15 +3,17 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 import Counter from "../Counter";
 
 export default function SearchBarList({ searchPhrase, data }) {
+
+
   const filteredData = useMemo(() => {
     return data.filter(
       (item) =>
-        item.name &&
-        item.category &&
+        item.name && 
+        item.category && 
         (item.name.toLowerCase().includes(searchPhrase.toLowerCase()) ||
           item.category.toLowerCase().includes(searchPhrase.toLowerCase()))
     );
-  }, [data, searchPhrase]);
+  }, [searchPhrase]);
 
   const renderItem = useCallback(({ item }) => {
     return (
@@ -30,18 +32,16 @@ export default function SearchBarList({ searchPhrase, data }) {
   const keyExtractor = useCallback((item) => item.id.toString(), []);
 
   return (
-    <View>
       <FlatList
         data={filteredData}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        windowSize={10}
+        initialNumToRender={8}
+        maxToRenderPerBatch={8}
+        windowSize={8}
         virtualized
       />
-    </View>
-  );
+  ); // To manage the display of the flatlist of a category, modify the style of the view above
 }
 
 const styles = StyleSheet.create({
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderBottomWidth: 1,
-    borderBottomColor: "#EAEAEA",
+    borderBottomColor: "pink",
   },
   itemInfo: {
     flex: 1,
@@ -59,12 +59,14 @@ const styles = StyleSheet.create({
   itemName: {
     fontWeight: "bold",
     fontSize: 16,
+    color: '#3ad6cf'
   },
   itemCategory: {
     fontSize: 14,
-    color: "#888888",
+    color: '#3ad6cf',
   },
   itemCounter: {
-    marginLeft: 10,
+    flex:1,
   },
 });
+
