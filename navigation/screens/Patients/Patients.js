@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {View, Text, SafeAreaView, ScrollView, StatusBar, StyleSheet} from 'react-native';
+import { Text, SafeAreaView, ScrollView, StatusBar, StyleSheet} from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import PatientsCategoryScreen from './PatientsCategory';
@@ -16,11 +15,10 @@ export default function PatientsScreen(){
     return(
       <SafeAreaView style={styles.container}>
           <Text
-            style={styles.text}>PATIENTS</Text>
+            style={styles.text}>Patients</Text>
           <Tab.Navigator
             initialRouteName={patientscategoryName}
             tabBarPosition='top' 
-            swipeEnabled={true} 
             screenOptions={({ route }) => ({
               tabBarIcon: ({ focused, color, size }) => {
                 let iconName;
@@ -34,15 +32,16 @@ export default function PatientsScreen(){
 
                 return <Ionicons name={iconName} size={18} color={color} />;
               },
+              tabBarActiveTintColor: '#3ad6cf',
+              tabBarInactiveTintColor: 'pink',
+              tabBarIndicatorStyle: {
+                opacity: 0,
+              },
+              tabBarLabelStyle: { paddingBottom : 10, fontSize : 12},
+              tabBarStyle: { height: 80, backgroundColor:'white', position:'absolute', width:'100%'},
+              tabBarShowIcon: true, // Show icons
+              swipeEnabled:true,
             })}
-            tabBarOptions={{
-              activeTintColor: '#FF0000',
-              inactiveTintColor: '#45b3e0',
-              labelStyle: { paddingBottom: 10, fontSize: 10 },
-              style: { height: 70 },
-              showIcon: true, // Show icons
-            }}
-
           >
 
             <Tab.Screen name={patientscategoryName} component={PatientsCategoryScreen}/>
@@ -56,13 +55,13 @@ export default function PatientsScreen(){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    paddingTop: 20,
   },
   text: {
     fontSize: 35,
     textAlign: 'center',
-    color: '#45b3e0',
-    textDecorationLine: 'underline'
+    color: '#3ad6cf',
+    fontFamily: 'monospace'
   }
 });
