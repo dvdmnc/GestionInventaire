@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StatusBar, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { setDoc, doc, getDocs, collection, deleteDoc } from "firebase/firestore";
+import { db } from '../../../firebaseConfig'; 
 
 export default function OrderCategoryScreen({ route }) {
   const [items, setItems] = useState([]);
@@ -8,19 +11,34 @@ export default function OrderCategoryScreen({ route }) {
     const { element, Quantity } = route.params || {};
 
     if (element && Quantity) {
-      const newItem = { id: Date.now(), content: `${element} - Quantité: ${Quantity}` };
-      setItems(prevItems => [...prevItems, newItem]);
+      const newItem = { name: `${element}`, quantity: `${Quantity}` };
+      setDoc(doc(db, "Orders", `${items.length != 0 ? items[items.length - 1].key + 1 : 1}`), newItem)
+      setItems(prevItems => [...prevItems, {...newItem, "key": items.length != 0 ? items[items.length - 1].key + 1 : 1}]);
     }
   }, [route.params]);
 
+  useEffect(() => {
+    getDocs(collection(db, 'Orders'))
+      .then((snapshot) => {
+        let Collection = []
+        snapshot.docs.forEach((doc) => {
+            Collection.push({...doc.data(), key: doc.id })
+         })
+         Collection.forEach((item) => {
+          setItems((prevItems) => [...prevItems, {"name" : item["name"], "key": item["key"], "quantity" : item["quantity"]}])
+         })
+      })
+  }, [])
+
   const removeItem = (id) => {
-    setItems(prevItems => prevItems.filter(item => item.id !== id));
+    deleteDoc(doc(db, "Orders", `${id}`))
+    setItems(prevItems => prevItems.filter(item => item.key !== id));
   };
 
   const renderItem = ({ item }) => (
     <View style={styles.itemContainer}>
-      <Text style={styles.itemText}>{item.content}</Text>
-      <TouchableOpacity style={styles.removeButton} onPress={() => removeItem(item.id)}>
+      <Text style={styles.itemText}>{item.name}  - Quantité : {item.quantity}</Text>
+      <TouchableOpacity style={styles.removeButton} onPress={() => removeItem(item.key)}>
         <Text style={styles.removeButtonText}>Supprimer</Text>
       </TouchableOpacity>
     </View>
@@ -28,17 +46,20 @@ export default function OrderCategoryScreen({ route }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar />
+      <LinearGradient
+          colors={['pink', 'white']}
+         style={{flex:1}}>
       {items.length > 0 ? (
         <FlatList
           data={items}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item.key.toString()}
           contentContainerStyle={styles.scrollViewContent}
         />
       ) : (
         <Text style={styles.emptyText}>Pas d'inventaire en attente de commande</Text>
       )}
+      </LinearGradient>
     </SafeAreaView>
   );
 }
@@ -46,7 +67,7 @@ export default function OrderCategoryScreen({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    marginTop:'20%'
   },
   scrollViewContent: {
     paddingHorizontal: 16,
@@ -54,7 +75,9 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     flexDirection: 'row',
-    backgroundColor: '#F0F0F0',
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: '#3ad6cf',
     padding: 10,
     borderRadius: 8,
     marginBottom: 10,
@@ -64,20 +87,24 @@ const styles = StyleSheet.create({
   itemText: {
     flex: 1,
     fontSize: 16,
+    color:'#3ad6cf',
   },
   removeButton: {
-    backgroundColor: '#FF0000',
+    backgroundColor: 'pink',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 4,
   },
   removeButtonText: {
-    color: '#FFFFFF',
+    color: '#3ad6cf',
     fontSize: 12,
   },
   emptyText: {
-    fontSize: 16,
+    fontSize: 18,
     alignSelf: 'center',
     marginTop: 50,
+    color:'white',
+    fontWeight: 'bold'
   },
 });
+
