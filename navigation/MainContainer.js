@@ -3,6 +3,7 @@ import * as React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 //Screens
 import WelcomeScreen from './screens/Welcome'
@@ -18,18 +19,18 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function MainContainer(){
     return(
-      <NavigationContainer>
-        <Tab.Navigator 
+        <NavigationContainer>
+        <Tab.Navigator
         initialRouteName={welcomeName}
         tabBarPosition='bottom' 
-        swipeEnabled={true} 
         screenOptions={({route}) => ({
             tabBarIcon: ({focused, color, size}) => {
                 let iconName;
                 let rn = route.name;
 
                 if(rn === welcomeName){
-                    iconName = focused ? 'home' : 'home-outline'
+                    iconName = focused ? 'hospital-box' : 'hospital-box-outline'
+                    return <MaterialCommunityIcons name={iconName} size={23} color={color}/>
                 } else if (rn === inventoryName){
                     iconName = focused ? 'list' : 'list-outline'
                 } else if (rn === patientsName){
@@ -38,15 +39,17 @@ export default function MainContainer(){
 
                 return <Ionicons name={iconName} size={23} color={color}/>
             },
+            tabBarActiveTintColor: '#3ad6cf',
+            tabBarInactiveTintColor: 'pink',
+            tabBarIndicatorStyle: {
+                opacity: 0,
+              },
+            tabBarLabelStyle: { paddingBottom : 10, fontSize : 12},
+            tabBarItemStyle: {marginHorizontal: 10, width: '100%'},
+            tabBarStyle: {height: '8%', elevation: 0,   // for Android
+            shadowOffset: {width: 0, height: 0 /* for iOS*/}, backgroundColor : 'transparent', position: 'absolute', left: '5%', bottom: '2%', width: '100%'},
+            swipeEnabled:true
         })}
-        tabBarOptions={{
-            activeTintColor: '#FF0000',
-            inactiveTintColor: '#45b3e0',
-            labelStyle: { paddingBottom : 10, fontSize : 10},
-            style: {height: 70},
-            showIcon: true, 
-        }}
-        
         >
 
         <Tab.Screen name={welcomeName} component={WelcomeScreen}/>
@@ -54,6 +57,6 @@ export default function MainContainer(){
         <Tab.Screen name={inventoryName} component={InventoryScreen}/>
 
         </Tab.Navigator>
-      </NavigationContainer>
+        </NavigationContainer>
     )
 }
