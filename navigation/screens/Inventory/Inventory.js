@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import {Text, SafeAreaView, StyleSheet} from 'react-native';
+import {Text, SafeAreaView, StyleSheet, View} from 'react-native';
 
 import SearchBar from './SearchBar';
 import SearchBarList from './SearchBarList';
@@ -25,10 +25,12 @@ export default function InventoryScreen(){
             setClicked={setClicked}
           />
           {clicked &&
+          <View style={styles.searchlist}>
             <SearchBarList
               searchPhrase={searchPhrase}
               data={data}
             />
+            </View>
           }
           {/* categories */}
           <CategoryDisplay />
@@ -47,5 +49,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#3ad6cf',
     fontFamily: 'monospace'
+  },
+  searchlist:{
+    height:'100%'
   }
 });
