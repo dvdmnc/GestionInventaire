@@ -1,14 +1,43 @@
 import * as React from 'react';
-import {View, Text, SafeAreaView, ScrollView, StatusBar, StyleSheet, Image} from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, Alert, StatusBar} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { auth } from '../../firebaseConfig';
+import { useFonts, Audiowide_400Regular } from '@expo-google-fonts/audiowide'
 
-export default function WelcomeScreen(){
+export default function WelcomeScreen({navigation}){
+    const signOut = () => {
+      Alert.alert('Déconnexion', 'Voulez-vous quittez l application ?', [{
+        text : 'Abandonner'
+      },
+      {
+        text : 'Me déconnecter',
+        onPress : () => auth.signOut()
+      }
+    ])
+    }
+
+    let [fontsLoaded, fontError] = useFonts({
+      Audiowide_400Regular,
+    });
+  
+    if (!fontsLoaded && !fontError) {
+      return null;
+    }
+
     return(
       <SafeAreaView style={styles.container}>
-        <ScrollView style={styles.scrollView}>
-          <Text style={styles.text}>BIENVENUE SUR IDEL STOCK</Text>
-          <Text style={styles.text2}>L'application de gestion d'inventaire conçue pour les infirmières libérales</Text>
-          <Image style={styles.caducee} source={require('./Images/Caducee.png')}/> 
-        </ScrollView>
+        <LinearGradient
+          colors={['pink', 'white']}
+         style={styles.View}>
+          <View style={styles.top}>
+            <TouchableOpacity onPress={signOut}>
+              <Ionicons name='arrow-back-circle' size={35} color='white'/>
+            </TouchableOpacity>
+            <Text style={styles.title}>IDEL Stock</Text>
+          </View>
+          <Image source={require('./Images/infirmière.png')} style={styles.img}/>
+        </LinearGradient>
     </SafeAreaView>
     );
 }
@@ -16,29 +45,33 @@ export default function WelcomeScreen(){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: StatusBar.currentHeight
   },
-  scrollView: {
-    backgroundColor: 'white',
-    paddingHorizontal: 3
-  },
-  text: {
-    fontSize: 35,
-    textAlign: 'center',
-    color: '#45b3e0',
-    textDecorationLine: 'underline'
-  },
-  text2: {
-    fontSize: 25,
-    textAlign: 'center',
-    color: '#45b3e0',
-    marginTop: 220
-  },
-  caducee: {
+  View:{
     flex: 1,
-    width : 100,
-    height: 100,
-    resizeMode: 'contain',
-    alignSelf: 'center',
-    marginTop: 20
+  },
+  top:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin:10,
+    backgroundColor: '#3ad6cf',
+    padding: 10,
+    borderRadius: 20,
+    borderColor:'white',
+    borderWidth:2,
+    shadowColor:'white',
+    elevation: 20
+  },
+  title:{
+    marginLeft: 60,
+    fontSize: 30,
+    color: 'white',
+    fontFamily: 'Audiowide_400Regular'
+  },
+  img:{
+    width: 300,
+    height: 300,
+    top:'20%',
+    left:'10%',
   }
 });
